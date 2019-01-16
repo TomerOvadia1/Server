@@ -63,7 +63,6 @@ public:
         <std::string,std::string>(prob,sol));
     }
 
-    void loadFileToMap();
 
     std::string readUntilNewLine(std::ifstream &myfile);
 };
