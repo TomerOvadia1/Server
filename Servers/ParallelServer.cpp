@@ -34,8 +34,6 @@ int boot::ParallelMain::main(int argc , char** argv){
 	Solver<ISearchable<Point>* ,stateVec >* solver ;
 	auto cacheManager = new FileCacheManager();
 
-	cacheManager->loadFileToMap();
-
 	//get port from program arguments
 	portno = std::stoi(argv[PORT_POS]);
 

@@ -12,7 +12,6 @@
 const int INITIAL_ROW = 0;
 const int INITIAL_COL = 0;
 const char SEPERATOR = ',';
-const char NEWLINE_FEED = '\n';
 
 class Matrix {
 	using MatrixVec = std::vector<std::vector<double>> ;
@@ -195,7 +194,7 @@ public:
 					string_matrix+= SEPERATOR ;
 				}
 			}
-			string_matrix += NEWLINE_FEED;
+			string_matrix += "\n";
 		}
 		string_matrix+=point_toString(entry_point);
 		string_matrix+=point_toString(exit_point);

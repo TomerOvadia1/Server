@@ -12,7 +12,7 @@ const char NEWLINE_FEED = '\n';
 void FileCacheManager::saveMapToFile(){
     std::ofstream myfile (FILE_NAME);
 
-    if (myfile.is_open()) {
+    if (myfile.is_open() , std::ofstream::trunc) {
 
         std::map<std::string, std::string>::iterator it;
 
@@ -31,30 +31,3 @@ void FileCacheManager::saveMapToFile(){
 }
 
 
-/**
- * load problems and solution from to and update map
- */
-void FileCacheManager::loadFileToMap(){
-    std::string line;
-    std::string prob;
-    std::string sol;
-    std::ifstream myfile (FILE_NAME);
-    if (myfile.is_open()){
-
-        while(getline (myfile,line)){
-        	if(line.empty()){
-				while(getline (myfile,line)){
-					if (line.empty()){
-						break;
-					}
-					sol += line + "\n";
-				}
-				this->update_map(prob, sol);
-        	}
-            prob += line + "\n";
-        }
-
-        myfile.close();
-    }
-
-}

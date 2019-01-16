@@ -117,52 +117,6 @@ vector<State<Node> *> BestFirstSearch<Node>::search(ISearchable<Node> *searchabl
     return {};
 }
 
-//template<class Node>
-//void BestFirstSearch<Node>::addToOpenList(State<Node> *state) {
-//    openList.push(state);
-//    saveValues.push_back(state);
-//    this->count++;
-//}
-//
-//template<class Node>
-//int BestFirstSearch<Node>::OpenListSize() {
-//    openList.size();
-//}
-//
-//template<class Node>
-//State<Node> *BestFirstSearch<Node>::popOpenList() {
-//    State<Node> *top = openList.top();
-//    openList.pop();
-//    auto it = saveValues.begin();
-//    for (it; it != saveValues.end(); ++it) {
-//        if (top == (*it)) {
-//            saveValues.erase(it);
-//            break;
-//        }
-//    }
-//    return top;
-//}
-//
-//
-//template<class Node>
-//bool BestFirstSearch<Node>::openContaines(State<Node> *state) {
-//    auto iterator = find(saveValues.begin(), saveValues.end(), state);
-//    if (iterator == saveValues.end()) {
-//        return false;
-//    } else {
-//        return true;
-//    }
-//}
-//
-//template<class Node>
-//State<Node> *BestFirstSearch<Node>::bringContaines(State<Node> *state) {
-//    auto iterator = find(saveValues.begin(), saveValues.end(), state);
-//    if (iterator == saveValues.end()) {
-//        return nullptr;
-//    } else {
-//        return *iterator;
-//    }
-//}
 
 
 #endif //SERVER_BESTFIRSTSEARCH_H

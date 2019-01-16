@@ -21,6 +21,27 @@ class FileCacheManager : public CacheManager<std::string, std::string> {
 public:
     FileCacheManager(){
         this->problems_solutions.clear();
+        std::string line;
+        std::string prob;
+        std::string sol;
+        std::ifstream myfile (FILE_NAME);
+        if (myfile.is_open()){
+
+            while(getline (myfile,line)){
+                if(line.empty()){
+                    while(getline (myfile,line)){
+                        if (line.empty()){
+                            break;
+                        }
+                        sol += line + "\n";
+                    }
+                    this->update_map(prob, sol);
+                }
+                prob += line + "\n";
+            }
+
+            myfile.close();
+        }
     }
 
     virtual bool is_solution_exists(std::string prob) {
