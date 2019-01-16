@@ -4,8 +4,6 @@
 
 #include "FileCacheManager.h"
 
-const char NEWLINE_FEED = '\n';
-
 /**
  * save all map to file
  */
@@ -14,7 +12,21 @@ void FileCacheManager::saveMapToFile(){
 
     if (myfile.is_open() , std::ofstream::trunc) {
 
-        std::map<std::string, std::string>::iterator it;
+        for(auto& p : problems_solutions){
+            myfile << p.first + "\n" ;
+            myfile << "$\n" ;
+            myfile << p.second + "\n" ;
+            myfile << "#\n" ;
+        }
+
+        myfile.close();
+    }
+    else std::cout << "Unable to save to file";
+}
+
+
+/*
+ * std::map<std::string, std::string>::iterator it;
 
         for ( it = this->problems_solutions.begin();
               it != this->problems_solutions.end(); it++ ){
@@ -24,10 +36,4 @@ void FileCacheManager::saveMapToFile(){
             myfile << sol << "\n";
             myfile << "\n";
         }
-
-        myfile.close();
-    }
-    else std::cout << "Unable to save to file";
-}
-
-
+ */

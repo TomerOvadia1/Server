@@ -26,23 +26,44 @@ public:
         std::string sol;
         std::ifstream myfile (FILE_NAME);
         if (myfile.is_open()){
-
-            while(getline (myfile,line)){
-                if(line.empty()){
-                    while(getline (myfile,line)){
-                        if (line.empty()){
-                            break;
-                        }
-                        sol += line + "\n";
-                    }
-                    this->update_map(prob, sol);
-                }
-                prob += line + "\n";
-            }
-
-            myfile.close();
+        	while (getline (myfile,line)){
+        		//read problem
+        		while(line != "$"){
+        			if(!line.empty()){
+						prob +=line +"\n" ;
+					}
+					getline (myfile,line);
+        		}
+        		//read solution
+				getline (myfile,line);
+				while(line != "#"){
+					if(!line.empty()){
+						sol +=line +"\n" ;
+					}
+					getline (myfile,line);
+				}
+				this->problems_solutions.insert(std::pair
+				<std::string,std::string>(prob,sol));
+				sol.clear();
+				prob.clear();
+        	}
         }
     }
+
+//	while(getline (myfile,line)){
+//		if(line.empty()){
+//			while(getline (myfile,line)){
+//				if (line.empty()){
+//					break;
+//				}
+//				sol += line + "\n";
+//			}
+//			this->update_map(prob, sol);
+//			prob.clear();
+//			sol.clear();
+//		}
+//		prob += line + "\n";
+//	}
 
     virtual bool is_solution_exists(std::string prob) {
         std::lock_guard<std::mutex> lock{m};

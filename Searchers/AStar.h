@@ -45,8 +45,8 @@ class AStar : public ISearcher<Node,vector<State<Node> *> > {
         }
 
         bool operator()(State<Node> *left, State<Node> *right) {
-            return left->getCost() + distance(left->getState(), this->goal)
-            < right->getCost() + distance(left->getState(), this->goal);
+            return left->getCost() + distance(left->getState(), this->goal) < right->getCost() +
+            distance(right->getState(), this->goal);
         }
     };
 

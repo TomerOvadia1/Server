@@ -233,7 +233,6 @@ public:
 
 	void handleClient(MatrixSearcher* searcher) {
 
-        this->fcm.loadFileToMap();
 
         if(this->fcm.is_solution_exists(matrix->toString())){
         	string solution = this->fcm.getSolution(matrix->toString());
