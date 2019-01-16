@@ -241,7 +241,6 @@ public:
 
 		std::cout << "Evaluated Nodes: " << searcher->getNumberOfNodesEvaluated() << std::endl;
 
-		this->fcm.update_map(matrix->toString(),getPath(solution,initial));
 
 		string cost = to_string(getCost(solution,initial));
 		string nodes = to_string(searcher->getNumberOfNodesEvaluated());
@@ -260,7 +259,6 @@ public:
 	}
 
 	~AlgorithmTester(){
-		this->fcm.saveMapToFile();
 	}
 };
 #endif //SERVER_ALGORITHMTESTER_H

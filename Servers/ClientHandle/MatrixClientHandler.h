@@ -155,10 +155,10 @@ public:
 		string prob = matrix->toString();
 
 		if(cacheManager->is_solution_exists(prob)){
-			std::cout << "Solution exist" << std::endl;
+//			std::cout << "Solution exist" << std::endl;
 			path = cacheManager->getSolution(prob);
 		}else{
-			std::cout << "Solution DOES NOT exist" << std::endl;
+//			std::cout << "Solution DOES NOT exist" << std::endl;
 			auto solution = solver->solve(matrix);
 			path = getPath(solution, matrix->getInitialState());
 			cacheManager->update_map(prob,path);
