@@ -16,13 +16,48 @@
 using MatrixVec = std::vector<std::vector<double>>;
 
 
-std::vector<double> StringVecConverter(std::vector<std::string>& stringVec){
-    std::vector<double> row ;
-    for(std::string& str : stringVec){
-        double val = stoi(str);
-        row.push_back(val);
+void test(int argc , char** argv){
+
+    for (int i=1; i<argc; i++){
+        char* path = argv[i];
+
+        using Point = std::pair<int,int>;
+
+        //Best First Search
+        try{
+            ISearcher<Point, vector<State<Point> >> bestfs = new BestFirstSearch<Point>();
+            auto tester = AlgorithmTester<vector<State<Point> *>>(path);
+            tester.handleClient(bestfs);
+        }catch(char const* s){
+            std::cout << s << std::endl;
+        }
+
+        //DFS
+        auto bfs_dfs_tester = AlgorithmTester< vector<Point>>(path);
+        try{
+            ISearcher<Point, vector<Point>>* dfs = new DFS<Point>();
+            bfs_dfs_tester.handleClient(dfs);
+        }catch(char const* s){
+            std::cout << s << std::endl;
+        }
+
+        // BFS
+        try{
+            ISearcher<Point, vector<Point>>* bfs = new BFS<Point>();
+            bfs_dfs_tester.handleClient(bfs);
+        }catch(char const* s){
+            std::cout << s << std::endl;
+        }
+
+        //AStar
+        try{
+            ISearcher<Point, vector<State<Point> >> astar = new AStar<Point>();
+            auto tester = AlgorithmTester<vector<State<Point> *>>(path);
+            tester.handleClient(astar);
+        }catch(char const* s){
+            std::cout << s << std::endl;
+        }
     }
-    return row;
 }
 
 int main(int argc , char** argv) {

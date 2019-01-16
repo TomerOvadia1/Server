@@ -31,7 +31,6 @@ class AlgorithmTester {
 	using Point = std::pair<int,int>;
 	using MatrixSearcher = ISearcher<Point,Solution> ;
 	using MatrixVec = std::vector<std::vector<double>>;
-	FileCacheManager fcm;
 	vector<pair<string,string>> cost_to_nodes;
 
 	SearchableMatrix* matrix ;
@@ -234,26 +233,21 @@ public:
 	void handleClient(MatrixSearcher* searcher) {
 
 
-        if(this->fcm.is_solution_exists(matrix->toString())){
-        	string solution = this->fcm.getSolution(matrix->toString());
-        	cout << solution << endl;
-        } else {
-			auto initial = matrix->getInitialState();
-			auto solution = searcher->search(matrix);
-			std::cout << "Solution : " << getPath(solution,initial) << std::endl;
+		auto initial = matrix->getInitialState();
+		auto solution = searcher->search(matrix);
+		std::cout << "Solution : " << getPath(solution,initial) << std::endl;
 
-			std::cout << "Cost : " << getCost(solution,initial) << std::endl;
+		std::cout << "Cost : " << getCost(solution,initial) << std::endl;
 
-			std::cout << "Evaluated Nodes: " << searcher->getNumberOfNodesEvaluated() << std::endl;
+		std::cout << "Evaluated Nodes: " << searcher->getNumberOfNodesEvaluated() << std::endl;
 
-			this->fcm.update_map(matrix->toString(),getPath(solution,initial));
+		this->fcm.update_map(matrix->toString(),getPath(solution,initial));
 
-			string cost = to_string(getCost(solution,initial));
-			string nodes = to_string(searcher->getNumberOfNodesEvaluated());
+		string cost = to_string(getCost(solution,initial));
+		string nodes = to_string(searcher->getNumberOfNodesEvaluated());
 
-			this->cost_to_nodes.push_back(pair<string,string>(cost,nodes));
-			saveMapToFile();
-        }
+		this->cost_to_nodes.push_back(pair<string,string>(cost,nodes));
+		saveMapToFile();
 
 //		double cost = printPath(solution);
 
